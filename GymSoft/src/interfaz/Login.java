@@ -6,7 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.Usuario;
+import modelo.GestionUsuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.Font;
@@ -17,8 +22,8 @@ import java.awt.event.ActionEvent;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldUser;
-	private JPasswordField passwordField;
+	private JTextField txtUser;
+	private JPasswordField txtContraseña;
 
 	/**
 	 * Launch the application.
@@ -59,31 +64,31 @@ public class Login extends JFrame {
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		panel.add(lblUsuario);
 		
-		textFieldUser = new JTextField();
-		textFieldUser.setBounds(161, 48, 315, 35);
-		textFieldUser.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		panel.add(textFieldUser);
-		textFieldUser.setColumns(10);
+		txtUser = new JTextField();
+		txtUser.setBounds(161, 48, 315, 35);
+		txtUser.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		panel.add(txtUser);
+		txtUser.setColumns(10);
 		
 		JLabel lblContrasenia = new JLabel("Contrase\u00F1a:");
 		lblContrasenia.setBounds(10, 126, 141, 32);
 		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		panel.add(lblContrasenia);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(161, 123, 315, 35);
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		panel.add(passwordField);
+		txtContraseña = new JPasswordField();
+		txtContraseña.setBounds(161, 123, 315, 35);
+		txtContraseña.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		panel.add(txtContraseña);
 		
-		JButton btnButton = new JButton("ENTRAR");
-		btnButton.addActionListener(new ActionListener() {
+		JButton btnEntrar = new JButton("ENTRAR");
+		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ingresar();
 			}
 		});
-		btnButton.setFont(new Font("Tahoma", Font.BOLD, 26));
-		btnButton.setBounds(65, 213, 158, 47);
-		panel.add(btnButton);
+		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 26));
+		btnEntrar.setBounds(65, 213, 158, 47);
+		panel.add(btnEntrar);
 		
 		JButton btnSalir = new JButton("SALIR");
 		btnSalir.addActionListener(new ActionListener() {
@@ -97,6 +102,25 @@ public class Login extends JFrame {
 	}
 
 	protected void ingresar() {
+		
+		String usuario = txtUser.getText();
+		String contraseña = String.valueOf(txtContraseña.getPassword());
+		
+		GestionUsuario gestionusuario = new GestionUsuario();
+		Usuario usu2 = new Usuario();
+		usu2.setUsername(usuario);
+		usu2.setContraseña(contraseña);
+		
+		Usuario usu = gestionusuario.obtenerUsuario(usu2);
+		
+		if (usu != null){
+			JOptionPane.showMessageDialog(contentPane, "Bienvenido al sistema");
+			this.dispose();
+			MainAdmin mainAdmi = new MainAdmin();
+			mainAdmi.setVisible(true);
+		}else{
+			JOptionPane.showMessageDialog(contentPane, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		
 	}
