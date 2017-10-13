@@ -102,9 +102,7 @@ public class Login extends JFrame {
 	}
 
 	protected void ingresar() {
-		
-<<<<<<< HEAD
-=======
+
 		String usuario = txtUser.getText();
 		String contraseña = String.valueOf(txtContraseña.getPassword());
 		
@@ -124,8 +122,6 @@ public class Login extends JFrame {
 			JOptionPane.showMessageDialog(contentPane, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
-		
->>>>>>> f32d836a8b67aec602bc61de853c472763cd2787
 	}
 	
 }
