@@ -7,7 +7,7 @@ public class Socio {
 	private int id_socio;
 	private String nombre;
 	private String apellido;
-	private int dni;
+	private String dni;
 	private Date fecha_nacimiento;
 	private Date fecha_ingreso;
 	
@@ -15,7 +15,7 @@ public class Socio {
 		
 	}
 
-	public Socio(String nombre, String apellido, int dni, Date fecha_nacimiento, Date fecha_ingreso) {
+	public Socio(String nombre, String apellido, String dni, Date fecha_nacimiento, Date fecha_ingreso) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
@@ -47,11 +47,11 @@ public class Socio {
 		this.apellido = apellido;
 	}
 
-	public int getDni() {
+	public String getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 

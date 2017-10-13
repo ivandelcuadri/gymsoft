@@ -6,15 +6,15 @@ public class Asistencia {
 	
 	private int id_asistencia;
 	private int id_socio;
-	private Date fecha_asistencia;
+	private Date fecha;
 
 	public Asistencia() {
 		
 	}
 
-	public Asistencia(int id_socio, Date fecha_asistencia) {
+	public Asistencia(int id_socio, Date fecha) {
 		this.id_socio = id_socio;
-		this.fecha_asistencia = fecha_asistencia;
+		this.fecha = fecha;
 	}
 
 	public int getId_asistencia() {
@@ -33,12 +33,12 @@ public class Asistencia {
 		this.id_socio = id_socio;
 	}
 
-	public Date getFecha_asistencia() {
-		return fecha_asistencia;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setFecha_asistencia(Date fecha_asistencia) {
-		this.fecha_asistencia = fecha_asistencia;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 }

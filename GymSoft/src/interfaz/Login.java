@@ -21,6 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUser;
 	private JPasswordField txtContraseña;
@@ -59,7 +63,7 @@ public class Login extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
+		JLabel lblUsuario = new JLabel("DNI:");
 		lblUsuario.setBounds(33, 51, 96, 32);
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		panel.add(lblUsuario);
@@ -87,7 +91,7 @@ public class Login extends JFrame {
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 26));
-		btnEntrar.setBounds(65, 213, 158, 47);
+		btnEntrar.setBounds(287, 212, 158, 47);
 		panel.add(btnEntrar);
 		
 		JButton btnSalir = new JButton("SALIR");
@@ -97,28 +101,30 @@ public class Login extends JFrame {
 			}
 		});
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 26));
-		btnSalir.setBounds(290, 213, 158, 47);
+		btnSalir.setBounds(51, 212, 158, 47);
 		panel.add(btnSalir);
 	}
 
 	protected void ingresar() {
 
 		String usuario = txtUser.getText();
-		String contraseña = String.valueOf(txtContraseña.getPassword());
+		String contrasenia = String.valueOf(txtContraseña.getPassword());
 		
 		GestionUsuario gestionusuario = new GestionUsuario();
 		Usuario usu2 = new Usuario();
-		usu2.setUsername(usuario);
-		usu2.setContraseña(contraseña);
+		usu2.setDni(usuario);
+		usu2.setContrasenia(contrasenia);
 		
 		Usuario usu = gestionusuario.obtenerUsuario(usu2);
 		
-		if (usu != null){
+		if(usu != null) {
 			JOptionPane.showMessageDialog(contentPane, "Bienvenido al sistema");
 			this.dispose();
 			MainAdmin mainAdmi = new MainAdmin();
+			mainAdmi.setLocationRelativeTo(null);
 			mainAdmi.setVisible(true);
-		}else{
+		}
+		else {
 			JOptionPane.showMessageDialog(contentPane, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		

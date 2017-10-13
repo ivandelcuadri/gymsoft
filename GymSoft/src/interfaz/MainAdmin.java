@@ -6,13 +6,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JToolBar;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenu;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainAdmin extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -84,11 +90,38 @@ public class MainAdmin extends JFrame {
 		mnPerfil.add(mntmEditarPerfil);
 		
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
+		mntmCerrarSesin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cerrarsesion();
+			}
+		});
 		mnPerfil.add(mntmCerrarSesin);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+	}
+
+	protected void cerrarsesion() {
+		Object[] options = {"Sí", "No"};
+		int n = JOptionPane.showOptionDialog(contentPane,
+		                "¿Está seguro que quiere cerrar sesión?",
+		                "Cerrar sesión?",
+		                JOptionPane.YES_NO_OPTION,
+		                JOptionPane.QUESTION_MESSAGE,
+		                null,
+		                options,
+		                options[0]);
+		if (n == JOptionPane.YES_OPTION) {
+			this.dispose();
+			Login login = new Login();
+			login.setLocationRelativeTo(null);
+			login.setVisible(true);
+		} else if (n == JOptionPane.NO_OPTION) {
+			
+		} else {
+			
+		}
 	}
 
 }

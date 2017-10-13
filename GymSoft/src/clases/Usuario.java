@@ -5,21 +5,19 @@ public class Usuario {
 	private int id_usuario;
 	private String nombre;
 	private String apellido;
-	private int dni;
-	private String username;
-	private String contraseña;
+	private String dni;
+	private String contrasenia;
 	private int tipo_usuario;
 	
 	public Usuario() {
 		
 	}
 
-	public Usuario(String nombre, String apellido, int dni, String username, String contraseña, int tipo_usuario) {
+	public Usuario(String nombre, String apellido, String dni, String contrasenia, int tipo_usuario) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.dni = dni;
-		this.username = username;
-		this.contraseña = contraseña;
+		this.contrasenia = contrasenia;
 		this.tipo_usuario = tipo_usuario;
 	}
 
@@ -47,28 +45,20 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public int getDni() {
+	public String getDni() {
 		return dni;
 	}
 
-	public void setDni(int dni) {
+	public void setDni(String dni) {
 		this.dni = dni;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getContraseña() {
-		return contraseña;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 	public int getTipo_usuario() {

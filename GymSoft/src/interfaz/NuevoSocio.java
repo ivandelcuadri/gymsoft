@@ -16,6 +16,10 @@ import javax.swing.JComboBox;
 
 public class NuevoSocio extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;

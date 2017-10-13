@@ -6,15 +6,15 @@ public class Pago {
 	
 	private int id_pago;
 	private int id_socio;
-	private Date fecha_pago;
+	private Date fecha;
 
 	public Pago() {
 		
 	}
 
-	public Pago(int id_socio, Date fecha_pago) {
+	public Pago(int id_socio, Date fecha) {
 		this.id_socio = id_socio;
-		this.fecha_pago = fecha_pago;
+		this.fecha = fecha;
 	}
 
 	public int getId_pago() {
@@ -33,12 +33,12 @@ public class Pago {
 		this.id_socio = id_socio;
 	}
 
-	public Date getFecha_pago() {
-		return fecha_pago;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setFecha_pago(Date fecha_pago) {
-		this.fecha_pago = fecha_pago;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 }
