@@ -98,6 +98,6 @@ public class Login extends JFrame {
 
 	protected void ingresar() {
 		
-		
 	}
+	
 }
