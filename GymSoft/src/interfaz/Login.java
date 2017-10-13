@@ -76,6 +76,11 @@ public class Login extends JFrame {
 		panel.add(passwordField);
 		
 		JButton btnButton = new JButton("ENTRAR");
+		btnButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ingresar();
+			}
+		});
 		btnButton.setFont(new Font("Tahoma", Font.BOLD, 26));
 		btnButton.setBounds(65, 213, 158, 47);
 		panel.add(btnButton);
@@ -89,5 +94,10 @@ public class Login extends JFrame {
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 26));
 		btnSalir.setBounds(290, 213, 158, 47);
 		panel.add(btnSalir);
+	}
+
+	protected void ingresar() {
+		
+		
 	}
 }
