@@ -6,11 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.Actividad;
+import modelo.GestionActividad;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
@@ -53,6 +58,7 @@ public class NuevoSocio extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+	
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
@@ -113,5 +119,15 @@ public class NuevoSocio extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(220, 245, 236, 32);
 		panel.add(comboBox);
+		comboBox.removeAllItems();
+		// ACA ESTA EL CODIGO QUE HE PROBADO TAMBIEN PROBE TRAYENDOME LA LISTA DE ACTIVIDADES PERO NO ANDUVO, PROBE CON STRING Y TMP
+	/*	GestionActividad gestionactividad = new GestionActividad();
+		ArrayList<String> actividades = new ArrayList<String>();
+		actividades = gestionactividad.obtenerActividades();
+		for(int i=0; i < actividades.size(); i++){
+			comboBox.addItem(actividades.get(i));	
+		}*/
+		
+		
 	}
 }

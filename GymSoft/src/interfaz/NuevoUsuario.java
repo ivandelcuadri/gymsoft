@@ -27,11 +27,11 @@ public class NuevoUsuario extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textFieldNombre;
-	private JTextField textFieldApellido;
-	private JTextField textFieldDni;
-	private JPasswordField passwordField;
-	private JPasswordField passwordField2;
+	private JTextField txtNombre;
+	private JTextField txtApellido;
+	private JTextField txtDni;
+	private JPasswordField txtPassword;
+	private JPasswordField txtPassword2;
 
 	/**
 	 * Launch the application.
@@ -81,63 +81,63 @@ public class NuevoUsuario extends JFrame {
 		lblDni.setBounds(32, 145, 178, 32);
 		panel.add(lblDni);
 		
-		textFieldNombre = new JTextField();
-		textFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textFieldNombre.setBounds(220, 45, 236, 32);
-		panel.add(textFieldNombre);
-		textFieldNombre.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		txtNombre.setBounds(220, 45, 236, 32);
+		panel.add(txtNombre);
+		txtNombre.setColumns(10);
 		
-		textFieldApellido = new JTextField();
-		textFieldApellido.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textFieldApellido.setColumns(10);
-		textFieldApellido.setBounds(220, 95, 236, 32);
-		panel.add(textFieldApellido);
+		txtApellido = new JTextField();
+		txtApellido.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		txtApellido.setColumns(10);
+		txtApellido.setBounds(220, 95, 236, 32);
+		panel.add(txtApellido);
 		
-		textFieldDni = new JTextField();
-		textFieldDni.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textFieldDni.setColumns(10);
-		textFieldDni.setBounds(220, 145, 236, 32);
-		panel.add(textFieldDni);
+		txtDni = new JTextField();
+		txtDni.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		txtDni.setColumns(10);
+		txtDni.setBounds(220, 145, 236, 32);
+		panel.add(txtDni);
 		
-		JButton button = new JButton("AGREGAR");
-		button.addActionListener(new ActionListener() {
+		JButton agregarProfesor = new JButton("AGREGAR");
+		agregarProfesor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				altaUsuario();
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 26));
-		button.setBounds(163, 363, 178, 47);
-		panel.add(button);
+		agregarProfesor.setFont(new Font("Tahoma", Font.BOLD, 26));
+		agregarProfesor.setBounds(163, 363, 178, 47);
+		panel.add(agregarProfesor);
 		
 		JLabel lblContrasenia = new JLabel("Contrase\u00F1a:");
 		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblContrasenia.setBounds(32, 195, 178, 32);
 		panel.add(lblContrasenia);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(220, 195, 236, 32);
-		passwordField.setToolTipText("La contraseña debe tener al menos 4 caracteres");
-		panel.add(passwordField);
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(220, 195, 236, 32);
+		txtPassword.setToolTipText("La contraseña debe tener al menos 4 caracteres");
+		panel.add(txtPassword);
 		
 		JLabel lblConfirmContrasenia = new JLabel("Confirmar contrase\u00F1a:");
 		lblConfirmContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		lblConfirmContrasenia.setBounds(32, 245, 178, 32);
 		panel.add(lblConfirmContrasenia);
 		
-		passwordField2 = new JPasswordField();
-		passwordField2.setBounds(220, 245, 236, 32);
-		passwordField2.setToolTipText("La contraseña debe tener al menos 4 caracteres");
-		panel.add(passwordField2);
+		txtPassword2 = new JPasswordField();
+		txtPassword2.setBounds(220, 245, 236, 32);
+		txtPassword2.setToolTipText("La contraseña debe tener al menos 4 caracteres");
+		panel.add(txtPassword2);
 		
 	}
 
 	protected void altaUsuario() {
 		
-		String nombre = textFieldNombre.getText();
-		String apellido = textFieldApellido.getText();
-		String dni = textFieldDni.getText();
-		String contrasenia = String.valueOf(passwordField.getPassword());
-		String contrasenia2 = String.valueOf(passwordField2.getPassword());
+		String nombre = txtNombre.getText();
+		String apellido = txtApellido.getText();
+		String dni = txtDni.getText();
+		String contrasenia = String.valueOf(txtPassword.getPassword());
+		String contrasenia2 = String.valueOf(txtPassword2.getPassword());
 		boolean nonulo = !(nombre.length()<=0 || apellido.length()<=0 || dni.length()<=0);
 		if (nonulo) {
 			if(contrasenia.equals(contrasenia2)) {
@@ -153,26 +153,26 @@ public class NuevoUsuario extends JFrame {
 					}
 					else { // usu != null, existe usuario
 						JOptionPane.showMessageDialog(contentPane, "Ya existe este usuario", "Error", JOptionPane.ERROR_MESSAGE);
-						passwordField.setText("");
-						passwordField2.setText("");
+						txtPassword.setText("");
+						txtPassword2.setText("");
 					}
 				}
 				else { // contraseñas menos de 3 caracteres
 					JOptionPane.showMessageDialog(contentPane, "La contraseña debe tener al menos 4 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
-					passwordField.setText("");
-					passwordField2.setText("");
+					txtPassword.setText("");
+					txtPassword2.setText("");
 				}
 			}
 			else { // contraseñas distintas
 				JOptionPane.showMessageDialog(contentPane, "La contraseña no coincide", "Error", JOptionPane.ERROR_MESSAGE);
-				passwordField.setText("");
-				passwordField2.setText("");
+				txtPassword.setText("");
+				txtPassword2.setText("");
 			}
 		}
 		else {
 			JOptionPane.showMessageDialog(contentPane, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
-			passwordField.setText("");
-			passwordField2.setText("");
+			txtPassword.setText("");
+			txtPassword2.setText("");
 		}
 		
 	}
