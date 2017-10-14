@@ -147,6 +147,7 @@ public class NuevoSocio extends JFrame {
 		panel.add(ccc);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		dateChooser.setBounds(220, 195, 236, 32);
 		panel.add(dateChooser);
 		
