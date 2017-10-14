@@ -31,6 +31,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JOptionPane;
+import com.toedter.calendar.JDateChooser;
 
 public class NuevoSocio extends JFrame {
 
@@ -144,6 +145,10 @@ public class NuevoSocio extends JFrame {
 		ccc.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		ccc.setBounds(220, 245, 236, 32);
 		panel.add(ccc);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(220, 195, 236, 32);
+		panel.add(dateChooser);
 		
 	}
 	
