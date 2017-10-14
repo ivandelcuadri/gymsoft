@@ -6,7 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.Usuario;
+import modelo.GestionUsuario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -96,6 +102,7 @@ public class NuevoUsuario extends JFrame {
 		JButton button = new JButton("AGREGAR");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				altaUsuario();
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.BOLD, 26));
@@ -121,4 +128,51 @@ public class NuevoUsuario extends JFrame {
 		panel.add(passwordField2);
 		
 	}
+
+	protected void altaUsuario() {
+		
+		String nombre = textFieldNombre.getText();
+		String apellido = textFieldApellido.getText();
+		String dni = textFieldDni.getText();
+		String contrasenia = String.valueOf(passwordField.getPassword());
+		String contrasenia2 = String.valueOf(passwordField2.getPassword());
+		boolean nonulo = !(nombre.length()<=0 || apellido.length()<=0 || dni.length()<=0);
+		if (nonulo) {
+			if(contrasenia.equals(contrasenia2)) {
+				if (!(contrasenia.length()<=3 || contrasenia2.length()<=3)) {
+					GestionUsuario gestionusuario = new GestionUsuario();
+					Usuario usu2 = gestionusuario.obtenerUsuarioConDni(dni);
+					Usuario usu = new Usuario(nombre, apellido, dni, contrasenia, 2);
+					
+					if (usu2 == null) {
+						gestionusuario.guardarUsuario(usu);
+						JOptionPane.showMessageDialog(contentPane, "Usuario guardado");
+						this.dispose();
+					}
+					else { // usu != null, existe usuario
+						JOptionPane.showMessageDialog(contentPane, "Ya existe este usuario", "Error", JOptionPane.ERROR_MESSAGE);
+						passwordField.setText("");
+						passwordField2.setText("");
+					}
+				}
+				else { // contraseñas menos de 3 caracteres
+					JOptionPane.showMessageDialog(contentPane, "La contraseña debe tener al menos 4 caracteres", "Error", JOptionPane.WARNING_MESSAGE);
+					passwordField.setText("");
+					passwordField2.setText("");
+				}
+			}
+			else { // contraseñas distintas
+				JOptionPane.showMessageDialog(contentPane, "La contraseña no coincide", "Error", JOptionPane.ERROR_MESSAGE);
+				passwordField.setText("");
+				passwordField2.setText("");
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(contentPane, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+			passwordField.setText("");
+			passwordField2.setText("");
+		}
+		
+	}
+	
 }

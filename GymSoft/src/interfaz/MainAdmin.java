@@ -78,6 +78,11 @@ public class MainAdmin extends JFrame {
 		menuBar.add(mnProfesores);
 		
 		JMenuItem mntmNuevoProfesor = new JMenuItem("Nuevo profesor");
+		mntmNuevoProfesor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				agregarUsuario();
+			}
+		});
 		mnProfesores.add(mntmNuevoProfesor);
 		
 		JMenuItem mntmListado_1 = new JMenuItem("Listado");
@@ -100,6 +105,12 @@ public class MainAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+	}
+
+	protected void agregarUsuario() {
+		NuevoUsuario usernew = new NuevoUsuario();
+		usernew.setLocationRelativeTo(null);
+		usernew.setVisible(true);
 	}
 
 	protected void cerrarsesion() {

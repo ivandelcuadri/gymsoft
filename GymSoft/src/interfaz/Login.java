@@ -27,7 +27,7 @@ public class Login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUser;
-	private JPasswordField txtContraseña;
+	private JPasswordField txtContrasenia;
 
 	/**
 	 * Launch the application.
@@ -79,10 +79,10 @@ public class Login extends JFrame {
 		lblContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		panel.add(lblContrasenia);
 		
-		txtContraseña = new JPasswordField();
-		txtContraseña.setBounds(161, 123, 315, 35);
-		txtContraseña.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		panel.add(txtContraseña);
+		txtContrasenia = new JPasswordField();
+		txtContrasenia.setBounds(161, 123, 315, 35);
+		txtContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		panel.add(txtContrasenia);
 		
 		JButton btnEntrar = new JButton("ENTRAR");
 		btnEntrar.addActionListener(new ActionListener() {
@@ -108,7 +108,7 @@ public class Login extends JFrame {
 	protected void ingresar() {
 
 		String usuario = txtUser.getText();
-		String contrasenia = String.valueOf(txtContraseña.getPassword());
+		String contrasenia = String.valueOf(txtContrasenia.getPassword());
 		
 		GestionUsuario gestionusuario = new GestionUsuario();
 		Usuario usu2 = new Usuario();
