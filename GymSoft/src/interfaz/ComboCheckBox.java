@@ -57,82 +57,59 @@ public class ComboCheckBox extends JFrame {
 		JCheckBox cb2 = new JCheckBox("Check 2",false);
 		v.add(cb1);
 		v.add(cb2);
-		
 		getContentPane().add(new CustomComboCheck(v));
-		//ComboCheckBox cb = new ComboCheckBox();
-		
-		
-		
 	}
 
 	class CustomComboCheck extends JComboBox{
-		
 		public CustomComboCheck(Vector v){
 			super(v);
-		
-		
-		
 		 //SET RENDERER
-			
 		setRenderer(new Comborenderer());	
 		//SET LISTENER
-		 addActionListener(new ActionListener(){
-			
+		addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ae){
 				ourItemSelectedd();
 			}
 		});
-	}
-		
-	private void ourItemSelectedd(){
-		Object selected= getSelectedItem();
-		if (selected instanceof JCheckBox ){
-			JCheckBox ck= (JCheckBox) selected;
-			ck.setSelected(!ck.isSelected());
-			repaint();
-			
-			Object[] selections = ck.getSelectedObjects();
-			if (selections != null ){
-				
-				for (Object lastItem : selections){
-					JOptionPane.showMessageDialog(null, lastItem.toString());
+		}
+		private void ourItemSelectedd(){
+			Object selected= getSelectedItem();
+			if (selected instanceof JCheckBox ){
+				JCheckBox ck= (JCheckBox) selected;
+				ck.setSelected(!ck.isSelected());
+				repaint();
+				Object[] selections = ck.getSelectedObjects();
+				if (selections != null ){
+					for (Object lastItem : selections){
+						JOptionPane.showMessageDialog(null, lastItem.toString());
+					}
 				}
 			}
 		}
-		
-		
-		
-	}
-	
 	}
 	
 	class Comborenderer implements ListCellRenderer{
-		
 		private JLabel label;
-
 		@Override
 		public Component getListCellRendererComponent(JList list, Object val, int index, boolean selected, boolean focused) {
-			
 			if (val instanceof Component){
 				Component c = (Component) val;
 				if(selected){
 					c.setBackground(list.getSelectionBackground());
 					c.setForeground(list.getSelectionForeground());
-				}else{
+				} else {
 					c.setBackground(list.getBackground());
 					c.setForeground(list.getForeground());
 				}
 				return c;
-			}else{
+			} else {
 				if(label == null){
 					label= new JLabel(val.toString());
-				}else{
+				} else {
 					label.setText(val.toString());
 				}
 				return label;
 			}
-			
-			
 		}
 	}
 	

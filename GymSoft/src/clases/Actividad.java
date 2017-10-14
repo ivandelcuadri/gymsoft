@@ -28,5 +28,9 @@ public class Actividad {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	
+	public String toString() {
+		return this.getDescripcion();
+	}
 
 }

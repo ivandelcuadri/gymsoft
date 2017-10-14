@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clases.Actividad;
+import interfaz.ComboCheckBox.Comborenderer;
+import interfaz.ComboCheckBox.CustomComboCheck;
 import modelo.GestionActividad;
 
 import javax.swing.JLabel;
@@ -127,26 +129,74 @@ public class NuevoSocio extends JFrame {
 		button.setBounds(163, 363, 178, 47);
 		panel.add(button);
 		
-		/*JComboBox<Actividad> comboBox = new JComboBox<Actividad>();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		comboBox.setBounds(220, 245, 236, 32);
-		panel.add(comboBox);
-		comboBox.removeAllItems();
+		
 		GestionActividad gestionactividad = new GestionActividad();
 		List<Actividad> actividades;
 		actividades = gestionactividad.obtenerActividades();
+		
+		Vector<JCheckBox> v = new Vector<JCheckBox>();
 		for(Actividad a : actividades){
-			comboBox.addItem(a);
-		}*/
+			JCheckBox cb = new JCheckBox(a.getDescripcion()); // <<== el CheckBox debería guardar la instancia entera?
+			cb.setFont(new Font("Tahoma", Font.PLAIN, 24));
+			v.add(cb);
+		}
+		CustomComboCheck ccc = new CustomComboCheck(v);
+		ccc.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		ccc.setBounds(220, 245, 236, 32);
+		panel.add(ccc);
 		
-		JComboBox<JCheckBox> comboBox = new JComboBox<JCheckBox>();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		comboBox.setBounds(220, 245, 236, 32);
-		panel.add(comboBox);
-		comboBox.removeAllItems();
-		
-		/*ComboCheckBox cbc= new ComboCheckBox();
-		panel.add(cbc);
-		*/
+	}
+	
+	class CustomComboCheck extends JComboBox{
+		public CustomComboCheck(Vector v){
+			super(v);
+			//SET RENDERER
+			setRenderer(new Comborenderer());	
+			//SET LISTENER
+			addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ae){
+				ourItemSelectedd();
+			}
+		});
+		}
+		private void ourItemSelectedd(){
+			Object selected= getSelectedItem();
+			if (selected instanceof JCheckBox ){
+				JCheckBox ck= (JCheckBox) selected;
+				ck.setSelected(!ck.isSelected());
+				repaint();
+				Object[] selections = ck.getSelectedObjects();
+				if (selections != null ){
+					for (Object lastItem : selections){
+						JOptionPane.showMessageDialog(null, lastItem.toString());
+					}
+				}
+			}
+		}
+	}
+	
+	class Comborenderer implements ListCellRenderer{
+		private JLabel label;
+		@Override
+		public Component getListCellRendererComponent(JList list, Object val, int index, boolean selected, boolean focused) {
+			if (val instanceof Component){
+				Component c = (Component) val;
+				if(selected){
+					c.setBackground(list.getSelectionBackground());
+					c.setForeground(list.getSelectionForeground());
+				} else {
+					c.setBackground(list.getBackground());
+					c.setForeground(list.getForeground());
+				}
+				return c;
+			} else {
+				if(label == null){
+					label= new JLabel(val.toString());
+				} else {
+					label.setText(val.toString());
+				}
+				return label;
+			}
+		}
 	}
 }
