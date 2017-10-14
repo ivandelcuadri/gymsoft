@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,18 +12,23 @@ import clases.Actividad;
 import modelo.GestionActividad;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 
 public class NuevoSocio extends JFrame {
 
@@ -139,13 +145,8 @@ public class NuevoSocio extends JFrame {
 		panel.add(comboBox);
 		comboBox.removeAllItems();
 		
-		JCheckBox cb1 = new JCheckBox("Check 1");
-		JCheckBox cb2 = new JCheckBox("Check 2");
-		comboBox.addItem(cb1);
-		comboBox.addItem(cb2);
-		
-		
-		
-		
+		/*ComboCheckBox cbc= new ComboCheckBox();
+		panel.add(cbc);
+		*/
 	}
 }
