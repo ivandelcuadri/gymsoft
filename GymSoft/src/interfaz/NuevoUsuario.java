@@ -55,7 +55,7 @@ public class NuevoUsuario extends JFrame {
 	 */
 	public NuevoUsuario() {
 		setTitle("Nuevo Profesor");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 513, 513);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -116,6 +116,7 @@ public class NuevoUsuario extends JFrame {
 		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(220, 195, 236, 32);
+		passwordField.setToolTipText("La contraseña debe tener al menos 4 caracteres");
 		panel.add(passwordField);
 		
 		JLabel lblConfirmContrasenia = new JLabel("Confirmar contrase\u00F1a:");
@@ -125,6 +126,7 @@ public class NuevoUsuario extends JFrame {
 		
 		passwordField2 = new JPasswordField();
 		passwordField2.setBounds(220, 245, 236, 32);
+		passwordField2.setToolTipText("La contraseña debe tener al menos 4 caracteres");
 		panel.add(passwordField2);
 		
 	}
