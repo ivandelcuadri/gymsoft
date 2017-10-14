@@ -60,6 +60,12 @@ public class MainAdmin extends JFrame {
 		mnSocios.add(mntmPago);
 		
 		JMenuItem mntmNuevoSocio = new JMenuItem("Nuevo socio");
+		mntmNuevoSocio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				agregarSocio();
+			}
+
+		});
 		mnSocios.add(mntmNuevoSocio);
 		
 		JMenuItem mntmListado = new JMenuItem("Listado");
@@ -105,6 +111,13 @@ public class MainAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+	}
+
+	protected void agregarSocio() {
+		NuevoSocio socionew = new NuevoSocio();
+		socionew.setLocationRelativeTo(null);
+		socionew.setVisible(true);
+		
 	}
 
 	protected void agregarUsuario() {
