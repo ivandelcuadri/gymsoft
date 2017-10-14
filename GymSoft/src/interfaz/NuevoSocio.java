@@ -14,10 +14,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JMenu;
 
 public class NuevoSocio extends JFrame {
 
@@ -116,17 +121,30 @@ public class NuevoSocio extends JFrame {
 		button.setBounds(163, 363, 178, 47);
 		panel.add(button);
 		
-		JComboBox comboBox = new JComboBox();
+		/*JComboBox<Actividad> comboBox = new JComboBox<Actividad>();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		comboBox.setBounds(220, 245, 236, 32);
 		panel.add(comboBox);
 		comboBox.removeAllItems();
-		// ACA ESTA EL CODIGO QUE HE PROBADO TAMBIEN PROBE TRAYENDOME LA LISTA DE ACTIVIDADES PERO NO ANDUVO, PROBE CON STRING Y TMP
-	/*	GestionActividad gestionactividad = new GestionActividad();
-		ArrayList<String> actividades = new ArrayList<String>();
+		GestionActividad gestionactividad = new GestionActividad();
+		List<Actividad> actividades;
 		actividades = gestionactividad.obtenerActividades();
-		for(int i=0; i < actividades.size(); i++){
-			comboBox.addItem(actividades.get(i));	
+		for(Actividad a : actividades){
+			comboBox.addItem(a);
 		}*/
+		
+		JComboBox<JCheckBox> comboBox = new JComboBox<JCheckBox>();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		comboBox.setBounds(220, 245, 236, 32);
+		panel.add(comboBox);
+		comboBox.removeAllItems();
+		
+		JCheckBox cb1 = new JCheckBox("Check 1");
+		JCheckBox cb2 = new JCheckBox("Check 2");
+		comboBox.addItem(cb1);
+		comboBox.addItem(cb2);
+		
+		
 		
 		
 	}
