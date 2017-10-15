@@ -131,8 +131,8 @@ public class NuevoUsuario extends JFrame {
 		
 	}
 
+	// Controlador
 	protected void altaUsuario() {
-		
 		String nombre = txtNombre.getText();
 		String apellido = txtApellido.getText();
 		String dni = txtDni.getText();
@@ -174,7 +174,6 @@ public class NuevoUsuario extends JFrame {
 			txtPassword.setText("");
 			txtPassword2.setText("");
 		}
-		
 	}
 	
 }

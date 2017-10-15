@@ -9,9 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clases.Actividad;
+import clases.Socio;
+import clases.Usuario;
 import interfaz.ComboCheckBox.Comborenderer;
 import interfaz.ComboCheckBox.CustomComboCheck;
 import modelo.GestionActividad;
+import modelo.GestionSocio;
+import modelo.GestionUsuario;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -24,6 +28,7 @@ import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -43,6 +48,8 @@ public class NuevoSocio extends JFrame {
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellido;
 	private JTextField textFieldDni;
+	private JDateChooser dateNac;
+	private JDateChooser dateIn;
 
 	/**
 	 * Launch the application.
@@ -65,6 +72,7 @@ public class NuevoSocio extends JFrame {
 	 * Create the frame.
 	 */
 	public NuevoSocio() {
+		setResizable(false);
 		setTitle("Nuevo Socio");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 513, 513);
@@ -80,56 +88,61 @@ public class NuevoSocio extends JFrame {
 		
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblNombre.setBounds(32, 45, 178, 32);
+		lblNombre.setBounds(32, 35, 178, 32);
 		panel.add(lblNombre);
 		
 		JLabel lblApellido = new JLabel("Apellido:");
 		lblApellido.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblApellido.setBounds(32, 95, 178, 32);
+		lblApellido.setBounds(32, 85, 178, 32);
 		panel.add(lblApellido);
 		
 		JLabel lblDni = new JLabel("DNI:");
 		lblDni.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblDni.setBounds(32, 145, 178, 32);
+		lblDni.setBounds(32, 135, 178, 32);
 		panel.add(lblDni);
+		
+		JLabel lblFechaNacimiento = new JLabel("Fecha nacimiendo:");
+		lblFechaNacimiento.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		lblFechaNacimiento.setBounds(32, 185, 178, 32);
+		panel.add(lblFechaNacimiento);
 		
 		JLabel lblFechaIngreso = new JLabel("Fecha ingreso:");
 		lblFechaIngreso.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblFechaIngreso.setBounds(32, 195, 178, 32);
+		lblFechaIngreso.setBounds(32, 235, 178, 32);
 		panel.add(lblFechaIngreso);
 		
 		JLabel lblActividades = new JLabel("Actividad/es:");
 		lblActividades.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblActividades.setBounds(32, 245, 178, 32);
+		lblActividades.setBounds(32, 285, 178, 32);
 		panel.add(lblActividades);
 		
 		textFieldNombre = new JTextField();
 		textFieldNombre.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		textFieldNombre.setBounds(220, 45, 236, 32);
+		textFieldNombre.setBounds(220, 35, 236, 32);
 		panel.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
 		textFieldApellido = new JTextField();
 		textFieldApellido.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		textFieldApellido.setColumns(10);
-		textFieldApellido.setBounds(220, 95, 236, 32);
+		textFieldApellido.setBounds(220, 85, 236, 32);
 		panel.add(textFieldApellido);
 		
 		textFieldDni = new JTextField();
 		textFieldDni.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		textFieldDni.setColumns(10);
-		textFieldDni.setBounds(220, 145, 236, 32);
+		textFieldDni.setBounds(220, 135, 236, 32);
 		panel.add(textFieldDni);
 		
-		JButton button = new JButton("AGREGAR");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		button.setFont(new Font("Tahoma", Font.BOLD, 26));
-		button.setBounds(163, 363, 178, 47);
-		panel.add(button);
+		dateNac = new JDateChooser();
+		dateNac.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		dateNac.setBounds(220, 185, 236, 32);
+		panel.add(dateNac);
 		
+		dateIn = new JDateChooser();
+		dateIn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		dateIn.setBounds(220, 235, 236, 32);
+		panel.add(dateIn);
 		
 		GestionActividad gestionactividad = new GestionActividad();
 		List<Actividad> actividades;
@@ -138,20 +151,58 @@ public class NuevoSocio extends JFrame {
 		Vector<JCheckBox> v = new Vector<JCheckBox>();
 		for(Actividad a : actividades){
 			JCheckBox cb = new JCheckBox(a.getDescripcion()); // <<== el CheckBox debería guardar la instancia entera?
+			// sólo acepta texto el JCheckBox parece ce
 			cb.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			v.add(cb);
 		}
 		CustomComboCheck ccc = new CustomComboCheck(v);
 		ccc.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		ccc.setBounds(220, 245, 236, 32);
+		ccc.setBounds(220, 285, 236, 32);
 		panel.add(ccc);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		dateChooser.setBounds(220, 195, 236, 32);
-		panel.add(dateChooser);
+
+		JButton button = new JButton("AGREGAR");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				altaSocio();
+			}
+		});
+		button.setFont(new Font("Tahoma", Font.BOLD, 26));
+		button.setBounds(163, 363, 178, 47);
+		panel.add(button);
 		
 	}
+	
+	// Controlador
+	protected void altaSocio() {
+		String nombre = textFieldNombre.getText();
+		String apellido = textFieldApellido.getText();
+		String dni = textFieldDni.getText();
+		Date fechaNac = dateNac.getDate();
+		Date fechaIn = dateIn.getDate();
+		// Falta chequear actividades
+		boolean nonulo = !(nombre.length()<=0 || apellido.length()<=0 || dni.length()<=0 || fechaNac==null || fechaIn==null);
+		if (nonulo) {
+			GestionSocio gestionsocio = new GestionSocio();
+			Socio soc = new Socio(nombre, apellido, dni, fechaNac, fechaIn);
+			Socio soc2 = gestionsocio.obtenerSocio(soc);
+			
+			if (soc2 == null) {
+				gestionsocio.guardarSocio(soc);
+				JOptionPane.showMessageDialog(contentPane, "Socio guardado");
+				this.dispose();
+			}
+			else { // usu != null, existe socio
+				JOptionPane.showMessageDialog(contentPane, "Ya existe socio", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(contentPane, "Todos los campos son obligatorios", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	
+
+	// Clases anidadas
 	
 	class CustomComboCheck extends JComboBox{
 		public CustomComboCheck(Vector v){
