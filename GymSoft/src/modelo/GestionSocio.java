@@ -1,7 +1,6 @@
 package modelo;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -40,8 +39,8 @@ public class GestionSocio {
 			pst.setString(1, soc.getNombre());
 			pst.setString(2, soc.getApellido());
 			pst.setString(3, soc.getDni());
-			pst.setDate(4, (Date) soc.getFecha_nacimiento());
-			pst.setDate(5, (Date) soc.getFecha_ingreso());
+			pst.setDate(4, new java.sql.Date(soc.getFecha_nacimiento().getTime()));
+			pst.setDate(5, new java.sql.Date(soc.getFecha_ingreso().getTime()));
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error en guardar socio");

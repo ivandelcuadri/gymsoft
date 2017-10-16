@@ -53,12 +53,6 @@ public class MainAdmin extends JFrame {
 		JMenu mnSocios = new JMenu("Socios");
 		menuBar.add(mnSocios);
 		
-		JMenuItem mntmAsistencia = new JMenuItem("Asistencia");
-		mnSocios.add(mntmAsistencia);
-		
-		JMenuItem mntmPago = new JMenuItem("Pago");
-		mnSocios.add(mntmPago);
-		
 		JMenuItem mntmNuevoSocio = new JMenuItem("Nuevo socio");
 		mntmNuevoSocio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -67,6 +61,12 @@ public class MainAdmin extends JFrame {
 
 		});
 		mnSocios.add(mntmNuevoSocio);
+		
+		JMenuItem mntmAsistencia = new JMenuItem("Asistencia");
+		mnSocios.add(mntmAsistencia);
+		
+		JMenuItem mntmPago = new JMenuItem("Pago");
+		mnSocios.add(mntmPago);
 		
 		JMenuItem mntmListado = new JMenuItem("Listado");
 		mnSocios.add(mntmListado);

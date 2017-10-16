@@ -103,6 +103,8 @@ public class Login extends JFrame {
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 26));
 		btnSalir.setBounds(51, 212, 158, 47);
 		panel.add(btnSalir);
+		
+		contentPane.getRootPane().setDefaultButton(btnEntrar);
 	}
 
 	protected void ingresar() {
