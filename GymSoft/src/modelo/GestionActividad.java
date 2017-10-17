@@ -37,5 +37,28 @@ public class GestionActividad {
 		}
 		return actividades;
 	}
+	
+	public int obtenerID(String actividad){
+		//Actividad act=null;
+		int id=0;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try {
+			con = MySQLconexion.getConexion();
+			String sql = "SELECT * FROM actividad where descripcion = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, actividad);
+			rs = pst.executeQuery();
+			while(rs.next()){
+				// act = new Actividad (rs.getString(2));
+				id= rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("Error en obtener ID actividad");
+		}
+		//return act.getId_actividad();
+		return id;
+	}
 
 }
