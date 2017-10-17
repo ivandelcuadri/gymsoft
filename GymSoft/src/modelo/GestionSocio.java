@@ -34,14 +34,14 @@ public class GestionSocio {
 		PreparedStatement pst = null;
 		try {
 			con = MySQLconexion.getConexion();
-			String sql = "insert into socio (nombre, apellido, dni, fecha_nacimiento, fecha_ingreso) values (?, ?, ?, ?, ?)";
+			/*String sql = "insert into socio (nombre, apellido, dni, fecha_nacimiento, fecha_ingreso) values (?, ?, ?, ?, ?)";
 			pst = con.prepareStatement(sql);
 			pst.setString(1, soc.getNombre());
 			pst.setString(2, soc.getApellido());
 			pst.setString(3, soc.getDni());
 			pst.setDate(4, new java.sql.Date(soc.getFecha_nacimiento().getTime()));
 			pst.setDate(5, new java.sql.Date(soc.getFecha_ingreso().getTime()));
-			pst.executeUpdate();
+			pst.executeUpdate();*/
 		} catch (Exception e) {
 			System.out.println("Error en guardar socio");
 		}

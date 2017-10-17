@@ -11,9 +11,9 @@ import javax.swing.border.EmptyBorder;
 import clases.Actividad;
 import clases.Socio;
 import clases.Usuario;
+
 import modelo.GestionActividad;
 import modelo.GestionSocio;
-import modelo.GestionUsuario;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -25,14 +25,11 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import com.toedter.calendar.JDateChooser;
 
@@ -48,6 +45,7 @@ public class NuevoSocio extends JFrame {
 	private JTextField textFieldDni;
 	private JDateChooser dateNac;
 	private JDateChooser dateIn;
+	private CustomComboCheck ccc;
 
 	/**
 	 * Launch the application.
@@ -153,7 +151,7 @@ public class NuevoSocio extends JFrame {
 			cb.setFont(new Font("Tahoma", Font.PLAIN, 24));
 			v.add(cb);
 		}
-		CustomComboCheck ccc = new CustomComboCheck(v);
+		ccc = new CustomComboCheck(v);
 		ccc.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		ccc.setBounds(220, 285, 236, 32);
 		panel.add(ccc);
@@ -186,6 +184,12 @@ public class NuevoSocio extends JFrame {
 			
 			if (soc2 == null) {
 				gestionsocio.guardarSocio(soc);
+				// -- Prueba para sacar los ítems seleccionados
+				for(int i=0; i<ccc.getModel().getSize(); i++) {
+					Object element = ccc.getModel().getElementAt(i);
+					System.out.println(element);
+				}
+				// --
 				JOptionPane.showMessageDialog(contentPane, "Socio guardado");
 				this.dispose();
 			}
@@ -208,13 +212,13 @@ public class NuevoSocio extends JFrame {
 			//SET RENDERER
 			setRenderer(new Comborenderer());	
 			//SET LISTENER
-			addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ae){
-				ourItemSelectedd();
-			}
-		});
+			/*addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent ae){
+					ourItemSelectedd();
+				}
+			});*/
 		}
-		private void ourItemSelectedd(){
+		/*private void ourItemSelectedd(){
 			Object selected= getSelectedItem();
 			if (selected instanceof JCheckBox ){
 				JCheckBox ck= (JCheckBox) selected;
@@ -227,7 +231,7 @@ public class NuevoSocio extends JFrame {
 					}
 				}
 			}
-		}
+		}*/
 	}
 	
 	class Comborenderer implements ListCellRenderer{
