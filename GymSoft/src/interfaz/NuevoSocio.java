@@ -11,8 +11,6 @@ import javax.swing.border.EmptyBorder;
 import clases.Actividad;
 import clases.Socio;
 import clases.Usuario;
-import interfaz.ComboCheckBox.Comborenderer;
-import interfaz.ComboCheckBox.CustomComboCheck;
 import modelo.GestionActividad;
 import modelo.GestionSocio;
 import modelo.GestionUsuario;
