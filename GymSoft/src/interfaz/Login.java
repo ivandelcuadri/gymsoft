@@ -122,9 +122,16 @@ public class Login extends JFrame {
 		if(usu != null) {
 			JOptionPane.showMessageDialog(contentPane, "Bienvenido al sistema");
 			this.dispose();
-			MainAdmin mainAdmi = new MainAdmin();
-			mainAdmi.setLocationRelativeTo(null);
-			mainAdmi.setVisible(true);
+			if(usu.getTipo_usuario() == 1){
+				MainAdmin mainAdmi = new MainAdmin();
+				mainAdmi.setLocationRelativeTo(null);
+				mainAdmi.setVisible(true);
+			}else{
+				MainProfesor mainProfesor = new MainProfesor();
+				mainProfesor.setLocationRelativeTo(null);
+				mainProfesor.setVisible(true);
+			}
+			
 		}
 		else {
 			JOptionPane.showMessageDialog(contentPane, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);

@@ -22,7 +22,7 @@ public class NuevaActividad extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtDescripcion;
-
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Launch the application.
 	 */
