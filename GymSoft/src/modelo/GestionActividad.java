@@ -60,5 +60,39 @@ public class GestionActividad {
 		//return act.getId_actividad();
 		return id;
 	}
+	
+	public void guardarActividad(Actividad act){
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = MySQLconexion.getConexion();
+			String sql = "insert into Actividad (descripcion) values (?)";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, act.getDescripcion());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("Error en guardar actividad");
+		}
+	}
+	
+	public Actividad obtenerActividad(Actividad act){
+		Actividad actividad = null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try {
+			con = MySQLconexion.getConexion();
+			String sql = "select * from actividad where descripcion=?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, act.getDescripcion());
+			rs = pst.executeQuery();
+			while(rs.next()){
+				actividad= new Actividad(rs.getString(2));
+			}
+		} catch (Exception e) {
+			System.out.println("Error en obtener datos de la actividad");
+		}
+		return actividad;
+	}
 
 }

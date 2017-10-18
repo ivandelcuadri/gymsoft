@@ -94,6 +94,20 @@ public class MainAdmin extends JFrame {
 		JMenuItem mntmListado_1 = new JMenuItem("Listado");
 		mnProfesores.add(mntmListado_1);
 		
+		JMenu mnActividades = new JMenu("Actividades");
+		menuBar.add(mnActividades);
+		
+		JMenuItem mntmNuevaActividad = new JMenuItem("Nueva Actividad");
+		mntmNuevaActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				agregarActividad();
+			}
+		});
+		mnActividades.add(mntmNuevaActividad);
+		
+		JMenuItem mntmListado_3 = new JMenuItem("Listado");
+		mnActividades.add(mntmListado_3);
+		
 		JMenu mnPerfil = new JMenu("Perfil");
 		menuBar.add(mnPerfil);
 		
@@ -124,6 +138,13 @@ public class MainAdmin extends JFrame {
 		NuevoUsuario usernew = new NuevoUsuario();
 		usernew.setLocationRelativeTo(null);
 		usernew.setVisible(true);
+	}
+	
+	protected void agregarActividad(){
+		NuevaActividad actividadnew = new NuevaActividad();
+		actividadnew.setLocationRelativeTo(null);
+		actividadnew.setVisible(true);
+	
 	}
 
 	protected void cerrarsesion() {

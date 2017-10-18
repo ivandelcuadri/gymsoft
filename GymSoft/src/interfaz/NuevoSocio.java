@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import clases.Actividad;
 import clases.Socio;
-import clases.Usuario;
+
 
 import modelo.GestionActividad;
 import modelo.GestionSocio;
