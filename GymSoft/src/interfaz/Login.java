@@ -118,20 +118,21 @@ public class Login extends JFrame {
 		usu2.setContrasenia(contrasenia);
 		
 		Usuario usu = gestionusuario.obtenerUsuario(usu2);
-		
+		int tipousuario = usu.getTipo_usuario();
+		String nombre = usu.getNombre();
 		if(usu != null) {
-			JOptionPane.showMessageDialog(contentPane, "Bienvenido al sistema");
+			JOptionPane.showMessageDialog(contentPane, "Bienvenido al sistema " + nombre);
 			this.dispose();
-			if(usu.getTipo_usuario() == 1){
-				MainAdmin mainAdmi = new MainAdmin();
+			//if(usu.getTipo_usuario() == 1){
+				MainAdmin mainAdmi = new MainAdmin(tipousuario,nombre);  //mejor seria pasar el objeto usuario
 				mainAdmi.setLocationRelativeTo(null);
 				mainAdmi.setVisible(true);
-			}else{
+			/*}else{
 				MainProfesor mainProfesor = new MainProfesor();
 				mainProfesor.setLocationRelativeTo(null);
 				mainProfesor.setVisible(true);
 			}
-			
+		*/	
 		}
 		else {
 			JOptionPane.showMessageDialog(contentPane, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
