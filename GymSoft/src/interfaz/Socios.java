@@ -3,6 +3,7 @@ package interfaz;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -10,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import clases.Actividad;
 import clases.Socio;
 import modelo.GestionSocio;
 
@@ -65,6 +67,7 @@ public class Socios extends JFrame {
 		
 		GestionSocio gestionsocio = new GestionSocio();
 		List<Socio> socios = gestionsocio.obtenerSocios();
+		
 		Vector<Vector<String>> filass = new Vector<Vector<String>>();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		for (Socio soc : socios) {
@@ -73,12 +76,24 @@ public class Socios extends JFrame {
 			fila.add(soc.getDni());
 			fila.add(soc.getApellido());
 			fila.add(soc.getNombre());
+			String nacimiento = df.format(soc.getFecha_nacimiento());
+			fila.add(nacimiento);
 			String ingreso = df.format(soc.getFecha_ingreso());
 			fila.add(ingreso);
+			
+			List<Actividad> actividades;
+			actividades = gestionsocio.obtenerActividadesDe(soc.getId_socio());
+			
+			JComboBox combo = new JComboBox();
+			for(Actividad a : actividades){
+				combo.addItem(a.getDescripcion());
+			}
+			//fila.add(combo); <<<===================================
+			
             filass.add(fila);
 		}
 		
-		Vector<String> header = new Vector<String>(2);
+		Vector<String> header = new Vector<String>();
 		header.add("Nº Socio");
 		header.add("DNI");
 		header.add("Apellido");

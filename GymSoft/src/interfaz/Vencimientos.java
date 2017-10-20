@@ -86,7 +86,7 @@ public class Vencimientos extends JFrame {
             filass.add(fila);
 		}
 		
-		Vector<String> header = new Vector<String>(2);
+		Vector<String> header = new Vector<String>();
 		header.add("Nº Socio");
 		header.add("DNI");
 		header.add("Apellido");
