@@ -1,7 +1,6 @@
 package interfaz;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -72,6 +71,11 @@ public class MainAdmin extends JFrame {
 		mnSocios.add(mntmPago);
 		
 		JMenuItem mntmListado = new JMenuItem("Listado");
+		mntmListado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				listadoSocios();
+			}
+		});
 		mnSocios.add(mntmListado);
 		
 		JMenu mnVencimientos = new JMenu("Vencimientos");
@@ -145,6 +149,13 @@ public class MainAdmin extends JFrame {
 			mnProfesores.setEnabled(false);
 		}
 		setTitle(titulo);
+	}
+
+	protected void listadoSocios() {
+		Socios socios = new Socios();
+		socios.setLocationRelativeTo(null);
+		socios.setVisible(true);
+		
 	}
 
 	protected void agregarSocio() {
