@@ -123,7 +123,7 @@ public class GestionSocio {
 		ResultSet rs = null;
 		try {
 			con = MySQLconexion.getConexion();
-			String sql = "SELECT * FROM socio_actividad WHERE id_socio=?";
+			String sql = "SELECT * FROM actividad a INNER JOIN socio_actividad s ON a.id_actividad = s.id_actividad WHERE id_socio=?";
 			pst = con.prepareStatement(sql);
 			pst.setInt(1, id_socio);
 			rs = pst.executeQuery();

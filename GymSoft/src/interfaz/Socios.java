@@ -68,10 +68,13 @@ public class Socios extends JFrame {
 		GestionSocio gestionsocio = new GestionSocio();
 		List<Socio> socios = gestionsocio.obtenerSocios();
 		
-		Vector<Vector<String>> filass = new Vector<Vector<String>>();
-		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		//Vector<Vector<String>> filass = new Vector<Vector<String>>();
+		Object[][] filas = new Object[socios.size()][8];
+		//DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
+		int i=0;
 		for (Socio soc : socios) {
-			Vector<String> fila = new Vector<String>();
+			/*Vector<String> fila = new Vector<String>();
 			fila.add(String.valueOf(soc.getId_socio()));
 			fila.add(soc.getDni());
 			fila.add(soc.getApellido());
@@ -79,31 +82,43 @@ public class Socios extends JFrame {
 			String nacimiento = df.format(soc.getFecha_nacimiento());
 			fila.add(nacimiento);
 			String ingreso = df.format(soc.getFecha_ingreso());
-			fila.add(ingreso);
+			fila.add(ingreso);*/
 			
 			List<Actividad> actividades;
 			actividades = gestionsocio.obtenerActividadesDe(soc.getId_socio());
 			
-			JComboBox combo = new JComboBox();
+			JComboBox<String> combo = new JComboBox<String>();
 			for(Actividad a : actividades){
+				System.out.println(a.getDescripcion());
 				combo.addItem(a.getDescripcion());
 			}
-			//fila.add(combo); <<<===================================
+			filas[i][0] = soc.getId_socio();
+			filas[i][1] = soc.getDni();
+			filas[i][2] = soc.getApellido();
+			filas[i][3] = soc.getNombre();
+			filas[i][4] = soc.getFecha_nacimiento();
+			filas[i][5] = soc.getFecha_ingreso();
+			filas[i][6] = combo;
+			filas[i][7] = null;
+			i++;
+			//fila.add(combo); <<<================ este no andaba antes porque era vector de String
+			// ahora es matriz de objetos y tampoco :F
 			
-            filass.add(fila);
+            //filass.add(fila);
 		}
 		
-		Vector<String> header = new Vector<String>();
-		header.add("Nº Socio");
-		header.add("DNI");
-		header.add("Apellido");
-		header.add("Nombre");
-		header.add("Fecha nacimiento");
-		header.add("Ingreso");
-		header.add("Actividades");
-		header.add("          ");
+		//Vector<String> header = new Vector<String>();
+		Object[] header = new Object[8];
+		header[0] = ("Nº Socio");
+		header[1] = ("DNI");
+		header[2] = ("Apellido");
+		header[3] = ("Nombre");
+		header[4] = ("Fecha nacimiento");
+		header[5] = ("Ingreso");
+		header[6] = ("Actividades");
+		header[7] = ("          ");
 		
-		TableModel model = new DefaultTableModel(filass, header);
+		TableModel model = new DefaultTableModel(filas, header);
         table = new JTable(model);
         JScrollPane tabla2 = new JScrollPane(table);
         tabla2.setBounds(38, 109, 812, 395);
