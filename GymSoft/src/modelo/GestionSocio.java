@@ -3,6 +3,8 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import clases.Socio;
 import conectorBD.MySQLconexion;
@@ -84,4 +86,32 @@ public class GestionSocio {
 		//return socio.getId_socio();
 		return id;
 	}
+	
+	public List<Socio> obtenerSocios(){ 
+		List<Socio> socios = new ArrayList<Socio>();
+		Socio socio = null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try {
+			con = MySQLconexion.getConexion();
+			String sql = "SELECT * FROM socio";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			try{
+				while(rs.next()){
+					socio = new Socio(rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getDate(6));
+					socio.setId_socio(rs.getInt(1));
+					socios.add(socio);
+				}
+			}catch (Exception e) {
+				System.out.println("Error recuperar socios");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error en obtener las socios");
+		}
+		return socios;
+	}
+	
 }
