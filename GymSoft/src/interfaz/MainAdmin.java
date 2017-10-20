@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.Usuario;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -41,15 +44,8 @@ public class MainAdmin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainAdmin(int tipousuario, String nombre) {   //pruebo con estos parametros, estaria mejor pasar el objeto usuario
-		if(tipousuario == 1){
-			String titulo ="Gym Soft - Administrador " + nombre; 
-			setTitle(titulo);
-		}else{
-			String titulo ="Gym Soft - Profesor " + nombre;
-			setTitle(titulo);
-		}
-		
+	public MainAdmin(Usuario usu) {   //pruebo con estos parametros, estaria mejor pasar el objeto usuario
+		String titulo ="Gym Soft - Administrador " + usu.getNombre(); 
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -122,6 +118,11 @@ public class MainAdmin extends JFrame {
 		menuBar.add(mnPerfil);
 		
 		JMenuItem mntmEditarPerfil = new JMenuItem("Editar perfil");
+		mntmEditarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				editarUsuario(usu);
+			}
+		});
 		mnPerfil.add(mntmEditarPerfil);
 		
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
@@ -136,11 +137,14 @@ public class MainAdmin extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		if (tipousuario == 2){
+		if (usu.getTipo_usuario() == 2){
+			titulo ="Gym Soft - Profesor " + usu.getNombre();
+			mntmEditarPerfil.setEnabled(false);
 			mnEstadsticas.setEnabled(false);
 			mnActividades.setEnabled(false);
 			mnProfesores.setEnabled(false);
 		}
+		setTitle(titulo);
 	}
 
 	protected void agregarSocio() {
@@ -154,6 +158,12 @@ public class MainAdmin extends JFrame {
 		NuevoUsuario usernew = new NuevoUsuario();
 		usernew.setLocationRelativeTo(null);
 		usernew.setVisible(true);
+	}
+	
+	protected void editarUsuario(Usuario usu){
+		EditarUsuario useredit = new EditarUsuario(usu);
+		useredit.setLocationRelativeTo(null);
+		useredit.setVisible(true);
 	}
 	
 	protected void agregarActividad(){
