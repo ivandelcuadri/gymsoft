@@ -24,11 +24,11 @@ public class MainAdmin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainAdmin frame = new MainAdmin();
+					MainAdmin frame = new MainAdmin(int tipousuario);
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -36,13 +36,20 @@ public class MainAdmin extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public MainAdmin() {
-		setTitle("Gym Soft - Administrador");
+	public MainAdmin(int tipousuario, String nombre) {   //pruebo con estos parametros, estaria mejor pasar el objeto usuario
+		if(tipousuario == 1){
+			String titulo ="Gym Soft - Administrador " + nombre; 
+			setTitle(titulo);
+		}else{
+			String titulo ="Gym Soft - Profesor " + nombre;
+			setTitle(titulo);
+		}
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 720);
@@ -94,6 +101,23 @@ public class MainAdmin extends JFrame {
 		JMenuItem mntmListado_1 = new JMenuItem("Listado");
 		mnProfesores.add(mntmListado_1);
 		
+		JMenu mnActividades = new JMenu("Actividades");
+		menuBar.add(mnActividades);
+		
+		JMenuItem mntmNuevaActividad = new JMenuItem("Nueva Actividad");
+		mntmNuevaActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				agregarActividad();
+			}
+		});
+		mnActividades.add(mntmNuevaActividad);
+		
+		JMenuItem mntmListado_3 = new JMenuItem("Listado");
+		mnActividades.add(mntmListado_3);
+		
+		JMenu mnRegistrarHoras = new JMenu("Registrar Horas");
+		menuBar.add(mnRegistrarHoras);
+		
 		JMenu mnPerfil = new JMenu("Perfil");
 		menuBar.add(mnPerfil);
 		
@@ -111,6 +135,12 @@ public class MainAdmin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		if (tipousuario == 2){
+			mnEstadsticas.setEnabled(false);
+			mnActividades.setEnabled(false);
+			mnProfesores.setEnabled(false);
+		}
 	}
 
 	protected void agregarSocio() {
@@ -124,6 +154,13 @@ public class MainAdmin extends JFrame {
 		NuevoUsuario usernew = new NuevoUsuario();
 		usernew.setLocationRelativeTo(null);
 		usernew.setVisible(true);
+	}
+	
+	protected void agregarActividad(){
+		NuevaActividad actividadnew = new NuevaActividad();
+		actividadnew.setLocationRelativeTo(null);
+		actividadnew.setVisible(true);
+	
 	}
 
 	protected void cerrarsesion() {

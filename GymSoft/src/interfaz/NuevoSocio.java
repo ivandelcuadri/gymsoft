@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import clases.Actividad;
 import clases.Socio;
+
+
 import modelo.GestionActividad;
 import modelo.GestionSocio;
 
@@ -23,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -173,19 +176,35 @@ public class NuevoSocio extends JFrame {
 		String dni = textFieldDni.getText();
 		Date fechaNac = dateNac.getDate();
 		Date fechaIn = dateIn.getDate();
+		ArrayList<String> actividadSeleccionada = new ArrayList<String>();
 		// Falta chequear actividades
 		boolean nonulo = !(nombre.length()<=0 || apellido.length()<=0 || dni.length()<=0 || fechaNac==null || fechaIn==null);
 		if (nonulo) {
 			GestionSocio gestionsocio = new GestionSocio();
+			GestionActividad gestionactividad = new GestionActividad();
 			Socio soc = new Socio(nombre, apellido, dni, fechaNac, fechaIn);
 			Socio soc2 = gestionsocio.obtenerSocio(soc);
 			
 			if (soc2 == null) {
 				gestionsocio.guardarSocio(soc);
+				int idSocio = gestionsocio.obtenerID(soc);
 				// -- Prueba para sacar los ítems seleccionados
 				for(int i=0; i<ccc.getModel().getSize(); i++) {
 					Object element = ccc.getModel().getElementAt(i);
-					System.out.println(element);
+					if (element instanceof JCheckBox){
+						JCheckBox chk = (JCheckBox) element;
+						if (chk.isSelected()){
+							//System.out.println(chk.getText());
+							actividadSeleccionada.add(chk.getText());
+						}
+					//	System.out.println(chk.getText() +" "+ chk.isSelected());
+					}
+					
+				}
+				for(String actividad: actividadSeleccionada){
+					//System.out.println(actividad);
+					int idActividad = gestionactividad.obtenerID(actividad);
+					gestionsocio.guardarActividad(idSocio,idActividad);
 				}
 				// --
 				JOptionPane.showMessageDialog(contentPane, "Socio guardado");
@@ -210,26 +229,26 @@ public class NuevoSocio extends JFrame {
 			//SET RENDERER
 			setRenderer(new Comborenderer());	
 			//SET LISTENER
-			/*addActionListener(new ActionListener(){
+			addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent ae){
 					ourItemSelectedd();
 				}
-			});*/
+			});
 		}
-		/*private void ourItemSelectedd(){
+		private void ourItemSelectedd(){
 			Object selected= getSelectedItem();
 			if (selected instanceof JCheckBox ){
 				JCheckBox ck= (JCheckBox) selected;
 				ck.setSelected(!ck.isSelected());
 				repaint();
 				Object[] selections = ck.getSelectedObjects();
-				if (selections != null ){
+				/*if (selections != null ){
 					for (Object lastItem : selections){
 						JOptionPane.showMessageDialog(null, lastItem.toString());
 					}
-				}
+				}*/
 			}
-		}*/
+		}
 	}
 	
 	class Comborenderer implements ListCellRenderer{
