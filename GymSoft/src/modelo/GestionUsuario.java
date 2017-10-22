@@ -23,6 +23,7 @@ public class GestionUsuario {
 			rs = pst.executeQuery();
 			while(rs.next()){
 				usuario= new Usuario(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+				usuario.setId_usuario(rs.getInt(1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en obtener datos de usuario");
@@ -43,6 +44,7 @@ public class GestionUsuario {
 			rs = pst.executeQuery();
 			while(rs.next()){
 				usuario= new Usuario(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6));
+				usuario.setId_usuario(rs.getInt(1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en obtener datos de usuario");
@@ -65,6 +67,25 @@ public class GestionUsuario {
 			pst.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("Error en guardar usuario");
+		}
+	}
+
+	public void actualizarUsuario(Usuario usu) {
+		Connection con = null;
+		PreparedStatement pst = null;
+		try {
+			con = MySQLconexion.getConexion();
+			String sql = "update usuario set nombre=?, apellido=?, dni=?, contrasenia=?, tipo_usuario=? where id_usuario=?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, usu.getNombre());
+			pst.setString(2, usu.getApellido());
+			pst.setString(3, usu.getDni());
+			pst.setString(4, usu.getContrasenia());
+			pst.setInt(5, usu.getTipo_usuario());
+			pst.setInt(6, usu.getId_usuario());
+			pst.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("Error en actualizar usuario");
 		}
 	}
 

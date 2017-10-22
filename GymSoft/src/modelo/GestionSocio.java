@@ -25,6 +25,7 @@ public class GestionSocio {
 			rs = pst.executeQuery();
 			while(rs.next()){
 				socio= new Socio(rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getDate(6));
+				socio.setId_socio(rs.getInt(1));
 			}
 		} catch (Exception e) {
 			System.out.println("Error en obtener datos de socio");

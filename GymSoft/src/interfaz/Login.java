@@ -118,11 +118,11 @@ public class Login extends JFrame {
 		usu2.setContrasenia(contrasenia);
 		
 		Usuario usu = gestionusuario.obtenerUsuario(usu2);
-		String nombre = usu.getNombre();
 		if(usu != null) {
+			String nombre = usu.getNombre();
 			JOptionPane.showMessageDialog(contentPane, "Bienvenido al sistema " + nombre);
 			this.dispose();
-			MainAdmin mainAdmi = new MainAdmin(usu);  //mejor seria pasar el objeto usuario
+			MainAdmin mainAdmi = new MainAdmin(usu);
 			mainAdmi.setLocationRelativeTo(null);
 			mainAdmi.setVisible(true);
 		}
